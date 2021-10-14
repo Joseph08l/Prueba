@@ -1,5 +1,4 @@
 # Deep Explorer
-<a href="https://asciinema.org/a/SKw4WnRSoPiccWXSsNmBbKdGX" target="_blank"><img src="https://asciinema.org/a/SKw4WnRSoPiccWXSsNmBbKdGX.svg" /></a>
 # Dependencies
 ```
      pip3 install -r requirements.txt
