@@ -6,13 +6,15 @@ from bs4 import BeautifulSoup
 import requests
 import os
 
+    
 # -------------------- PROXIES --------------------
 
 proxies = {'http':'socks5h://127.0.0.1:9050', 'https':'socks5h://127.0.0.1:9050'} # tor proxy
 
 # -------------------- FUNCS --------------------
 
-def crawl(option, deeplinks, link, intexts):
+def crawl(option, deeplinks, link, intexts) -> None:
+    """ Crawl obtained links """
     error=0
     if option == "default":
         length_of_web_links_to_crawl = len(deeplinks)
@@ -50,7 +52,7 @@ def crawl(option, deeplinks, link, intexts):
                                 print(darklink)
                             else:
                                 print("valid link, but have not '" + intexts + "' inside: \033[0;31m" + darklink + "\033[0m")   
-                iterations+=1      
+                iterations+=1
     if option == "all":
         try:
             with timeout(10):
@@ -86,7 +88,9 @@ def crawl(option, deeplinks, link, intexts):
                             print("valid link, but have not '" + intexts + "' inside: \033[0;31m" + darklink + "\033[0m")   
         else:
             print("Skipping, takes to long")
+
 def isonion(darklink):
+    """ check if is a tor like URL """
     if not ".onion" in darklink or "http://msydqstlz2kzerdg.onion" in darklink: # if there's not ".onion" in href, its not a tor link so... return False
         return False
         
@@ -104,6 +108,7 @@ def isonion(darklink):
                 return isvalid # else... return the link!
                 
 def search(crawling, intexts):
+    """ ahmia search """
     darklinks = []
     print("Searching. . . ", end="", flush=True)
     web = "http://msydqstlz2kzerdg.onion/search/?q="
