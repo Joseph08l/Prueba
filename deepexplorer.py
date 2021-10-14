@@ -38,7 +38,7 @@ proxies = {'http':'socks5h://127.0.0.1:9050', 'https':'socks5h://127.0.0.1:9050'
 
 def crawl(option, deeplinks, link, intexts):
     error=0
-    if option is "default":
+    if option == "default":
         length_of_web_links_to_crawl = len(deeplinks)
         iterations = 0
         
@@ -75,7 +75,7 @@ def crawl(option, deeplinks, link, intexts):
                             else:
                                 print("valid link, but have not '" + intexts + "' inside: \033[0;31m" + darklink + "\033[0m")   
                 iterations+=1      
-    if option is "all":
+    if option == "all":
         try:
             with timeout(10):
                 crawl = requests.get(link, proxies=proxies)
@@ -122,7 +122,7 @@ def isonion(darklink):
                 maybevalid = requests.get(isvalid, proxies=proxies) # can we connect to it?
         except:
             return False
-        if maybevalid.status_code is not 200:
+        if maybevalid.status_code != 200:
             return False # if not... return False
         else:
                 return isvalid # else... return the link!
@@ -248,7 +248,7 @@ if __name__ == "__main__":
         search_string = sys.argv[1]
         number_results = int(sys.argv[2])
         crawld = sys.argv[3]
-        if len(sys.argv) is 5:
+        if len(sys.argv) == 5:
             intext = sys.argv[4]
         else:
             intext = ""
